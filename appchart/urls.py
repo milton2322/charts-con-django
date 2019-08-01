@@ -21,6 +21,6 @@ from .views import HomeView, get_data, ChartData
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('api/data/', get_data, name='api-data'),
-    path('api/chart/data', ChartData.as_view()),
+    path('api/chart/data', ChartData.as_view(), name='chart'),
     path('admin/', admin.site.urls),
 ]

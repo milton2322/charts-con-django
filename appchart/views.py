@@ -1,4 +1,3 @@
-#from django.contrib.auth import get_user_model
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.generic import View
@@ -6,7 +5,7 @@ from django.views.generic import View
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-#User = get_user_model()
+
 
 class HomeView(View):
    def get(self, request, *args, **kwargs):        
@@ -15,22 +14,23 @@ class HomeView(View):
 
 
 
-def get_data(request, *args, **kwargs):       
+def get_data(request, *args, **kwargs): 
+    labels = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'] 
+    default_items = [40,24,34,99,34,57]     
     data ={
-        "sales":100,
-        "customers": 10,        
+        "labels":labels,
+        "default": default_items, 
+               
     } 
     return JsonResponse(data)
 
 class ChartData(APIView):    
     authentication_classes = []
     permission_classes = []
-
-    def get(self, request, format=None):
+    def get(self,request, format=None):
+        labels = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
         data ={
-            "sales":100,
-            "customers": 10,
-            "users": ["michael", "tina", "albert"],
-            #"users": User.objects.all().count(),        
+            "labels": 40,
+            "customers": 10,     
         }        
         return Response(data)
